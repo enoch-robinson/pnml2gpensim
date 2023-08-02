@@ -10,7 +10,7 @@ for j = 1:lenTransStruct,
         transData = transStruct(j).Children;
         lenTransData = length(transData);
         for k = 1:lenTransData,
-            if strcmp(transData(k).Name, 'value')
+            if (strcmp(transData(k).Name, 'value') || strcmp(transData(k).Name, 'text')),
                 trans.name = transData(k).Children.Data;
             end;
         end;                             

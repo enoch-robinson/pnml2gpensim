@@ -14,7 +14,8 @@ for j = 1:lenArcStruct,
         arcData = arcStruct(j).Children;
         lenArcData = length(arcData);
         for k = 1:lenArcData,
-            if strcmp(arcData(k).Name, 'value'),
+            kname = arcData(k).Name;
+            if (strcmp(kname, 'value') || strcmp(kname, 'text'),
                 arc_weight = arcData(k).Children.Data;
             end;
         end;                             
