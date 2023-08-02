@@ -1,5 +1,5 @@
 % ----- Subfunction PARSECHILDNODES -----
-function children = parseChildNodes(theNode)
+function children = parsePNMLNodes(theNode)
 % Recurse over node children.
 children = [];
 if theNode.hasChildNodes
@@ -13,6 +13,8 @@ if theNode.hasChildNodes
 
     for count = 1:numChildNodes
         theChild = childNodes.item(count-1);
-        children(count) = makeStructFromNode(theChild);
+        if strcmp(theChild.getNodeName, 'pnml')
+            children = makeStructFromNode(theChild);
+        end
     end
 end

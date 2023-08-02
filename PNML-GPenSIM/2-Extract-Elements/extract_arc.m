@@ -9,25 +9,25 @@ eval(['arcx.', arcElement.Attributes(3).Name, '=', 'arcElement.Attributes(3).Val
 arcStruct = arcElement.Children; 
 
 lenArcStruct = length(arcStruct);
-for j = 1:lenArcStruct,
-    if strcmp(arcStruct(j).Name, 'inscription'),
+for j = 1:lenArcStruct
+    if strcmp(arcStruct(j).Name, 'inscription')
         arcData = arcStruct(j).Children;
         lenArcData = length(arcData);
-        for k = 1:lenArcData,
+        for k = 1:lenArcData
             kname = arcData(k).Name;
-            if (strcmp(kname, 'value') || strcmp(kname, 'text'),
+            if (strcmp(kname, 'value') || strcmp(kname, 'text'))
                 arc_weight = arcData(k).Children.Data;
-            end;
-        end;                             
-    end; % if strcmp(placeStruct(j).Name, 'name')            
-end;
+            end
+        end                             
+    end % if strcmp(placeStruct(j).Name, 'name')            
+end
 
 % just a fix for Ian Liu's problem: 
 % if arc_weight is defined as a sting 'Default,1', not 
 % just as a character like '1','2', or '1000' as expected 
-if strfind(arc_weight, 'Default,'),
+if contains(arc_weight, 'Default,')
     arc_weight = arc_weight(9:end);
-end;
+end
 eval(['arcx.weight =', int2str(arc_weight), ';']);
 
 

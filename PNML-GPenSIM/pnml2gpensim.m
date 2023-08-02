@@ -15,7 +15,7 @@ end
 
 % Recurse over child nodes. This could run into problems 
 % with very deeply nested trees.
-try   PNMLStruct = parseChildNodes(tree);
+try   PNMLStruct = parsePNMLNodes(tree);
 catch err
     error(err.identifier, 'Unable to parse XML file %s.', PNMLfile);
 end
