@@ -1,4 +1,4 @@
-function [] = pnml2gpensim(PNMLfile)
+function [] = pnml2gpensim(PNMLfile, visable)
 %function []= pnml2gpensim(PNMLfile)
 %
 % This function generates GPenSIM files (such as MSF and PDF, 
@@ -32,9 +32,22 @@ end
 [global_places, global_transitions, global_arcs] = ...
             extract_pta_elements(netStruct);
 % display extracted info: print places, transitions, and arcs
-print_pta(global_places, global_transitions, global_arcs);
+if visable 
+    print_pta(global_places, global_transitions, global_arcs);
+end
+current_dir = pwd;
+cd("converted\");
+[~, pn_name, ~ ] = fileparts(PNMLfile);
+
+dir_info = dir(pn_name);
+% disp(isempty(dir_info))
+if isempty(dir_info)
+    mkdir(pn_name);
+end
+cd(pn_name)
 
 % finally, write the GPenSIM files (msf, pdf, common_pre, common_post)
 write_GPenSIM_files(PNMLfile, global_places, ...
                  global_transitions, global_arcs);
+cd(current_dir)
              

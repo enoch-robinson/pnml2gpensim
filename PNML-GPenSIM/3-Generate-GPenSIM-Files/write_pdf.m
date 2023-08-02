@@ -2,14 +2,17 @@ function [] = write_pdf(PNMLfile, global_places, global_transitions, ...
                         global_arcs)
 % function [] = write_pdf(PNMLfile, global_places, global_transitions, ...
 %                       global_arcs)
-PDFfileName = ['pdf', num2str(floor(unifrnd(1, 10000))),'_pdf.m']; 
+[~,pn_name,~] = fileparts(PNMLfile);
+PDFfileName = ['pdf_', pn_name,'.m']; 
+
 fid = fopen(PDFfileName, 'w'); % open the file with write permission
 
-lineStr = ['% GPenSIM PDF file generated from', PNMLfile, ' ...'];
+
+lineStr = ['% GPenSIM PDF file generated from ', PNMLfile, ' ...'];
 fprintf(fid, '%s\n', lineStr);
-lineStr = '% PDF: ''pdf_pdf.m''  '; fprintf(fid, '%s\n\n', lineStr);
-lineStr = 'function [png] = pdf_pdf()'; fprintf(fid, '%s\n\n', lineStr);
-lineStr = ['png.PN_name = ', char(39), 'PDFxxx', char(39), ';'];
+lineStr = ['% PDF: ', char(39), PDFfileName, char(39) ]; fprintf(fid, '%s\n\n', lineStr);
+lineStr = ['function [png] = ', 'pdf_', pn_name, '()']; fprintf(fid, '%s\n\n', lineStr);
+lineStr = ['png.PN_name = ', char(39), pn_name, char(39), ';'];
 fprintf(fid, '%s\n', lineStr);
 
 pairs = 0;

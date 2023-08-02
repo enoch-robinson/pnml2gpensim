@@ -1,6 +1,6 @@
 function [] = write_msf(PNMLfile, global_places)
 % function [] = write_msf(PNMLfile, global_places)
-
+[~,pn_name,~] = fileparts(PNMLfile);
 fid = fopen('msf.m', 'w');  % open the file with write permission
 
 lineStr='% GPenSIM Main Simulation File ';fprintf(fid,'%s\n',lineStr);
@@ -11,7 +11,7 @@ lineStr = 'clear all; clc; '; fprintf(fid, '%s\n\n', lineStr);
 lineStr = 'global global_info; % global user data attached to global_info';
 fprintf(fid, '%s\n', lineStr);
 lineStr='global_info.PRINT_LOOP_NUMBER = 1; ';fprintf(fid,'%s\n\n',lineStr);
-lineStr='pns = pnstruct(''pdf_pdf'');';fprintf(fid,'%s\n',lineStr);
+lineStr=['pns = pnstruct(', char(39), 'pdf_', pn_name, char(39),');']; fprintf(fid,'%s\n',lineStr);
 
 lineStr = 'dyn.m0 = {';
 pairs = 0;

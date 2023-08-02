@@ -30,6 +30,6 @@ lineStr = '    % error ([''Error in the transition name: '', transition.name]);'
 fprintf(fid, '%s\n', lineStr);
 lineStr = 'end;'; fprintf(fid, '%s\n\n', lineStr);
 
-lineStr = '% fire = 1; % let it fire'; fprintf(fid, '%s\n', lineStr);
+lineStr = 'fire = 1; % let it fire'; fprintf(fid, '%s\n', lineStr);
 
 fclose(fid);
